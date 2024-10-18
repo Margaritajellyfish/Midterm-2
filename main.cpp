@@ -138,11 +138,11 @@ public:
         }
     }
     
-    void pop_front() {
-
+    string pop_front() {
+        string costumer = head->data;
         if (!head) {
             cout << "List is empty." << endl;
-            return;
+        return "\n";
         }
 
         Node * temp = head;
@@ -150,25 +150,33 @@ public:
         if (head->next) {
             head = head->next;
             head->prev = nullptr;
+            return costumer;
         }
-        else
+        else{
             head = tail = nullptr;
+            return costumer;
+        }
         delete temp;
+    
     }
 
-    void pop_back() {
+    string pop_back() {
+        string costumer = tail->data;
         if (!tail) {
             cout << "List is empty." << endl;
-            return;
+            return "\n";
         }
         Node * temp = tail;
 
         if (tail->prev) {
             tail = tail->prev;
             tail->next = nullptr;
+            return costumer;
         }
-        else
+        else{
             head = tail = nullptr;
+        return costumer;
+        }
         delete temp;
     }
 
@@ -204,7 +212,17 @@ public:
         }
         cout << endl;
     }
-    vector<string> getnames(string f) {
+    int getSize() {
+    Node *current = head;
+    int count = 0;
+    while (current) {
+      current = current->next;
+      count++;
+    }
+    return count;
+  }
+};
+   vector<string> getnames(string f) {
         vector<string> lists;
         ifstream fin(f);
         string name;
@@ -222,7 +240,6 @@ public:
         v.erase(v.begin() + i);
 
     }
-};
 vector<string> getnames(string f);
 string pickName(vector<string> v);
 
