@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int  MIN_LS = 5, MAX_LS = 20;
 
 class DoublyLinkedList {
 private:
@@ -79,15 +79,15 @@ public:
         delete temp;
     }
 
-    void delete_pos(int pos) {
+    string delete_pos(int pos) {
         if (!head) {
             cout << "List is empty." << endl;
-            return;
+            return "\n";
         }
     
         if (pos == 1) {
             pop_front();
-            return;
+            return " nothing inside";
         }
     
         Node* temp = head;
@@ -95,24 +95,25 @@ public:
         for (int i = 1; i < pos; i++){
             if (!temp) {
                 cout << "Position doesn't exist." << endl;
-                return;
+                return" ";
             }
             else
                 temp = temp->next;
         }
         if (!temp) {
             cout << "Position doesn't exist." << endl;
-            return;
+            return " ";
         }
-    
+        string custumer = temp->data;
         if (!temp->next) {
             pop_back();
-            return;
+            return" ";
         }
     
         Node* tempPrev = temp->prev;
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
+        return custumer;
         delete temp;
     }
 
@@ -139,7 +140,7 @@ public:
     }
     
     string pop_front() {
-        string costumer = head->data;
+        string custumer = head->data;
         if (!head) {
             cout << "List is empty." << endl;
         return "\n";
@@ -150,18 +151,18 @@ public:
         if (head->next) {
             head = head->next;
             head->prev = nullptr;
-            return costumer;
+            return custumer;
         }
         else{
             head = tail = nullptr;
-            return costumer;
+            return custumer;
         }
         delete temp;
     
     }
 
     string pop_back() {
-        string costumer = tail->data;
+        string custumer = tail->data;
         if (!tail) {
             cout << "List is empty." << endl;
             return "\n";
@@ -171,11 +172,11 @@ public:
         if (tail->prev) {
             tail = tail->prev;
             tail->next = nullptr;
-            return costumer;
+            return custumer;
         }
         else{
             head = tail = nullptr;
-        return costumer;
+        return custumer;
         }
         delete temp;
     }
@@ -235,53 +236,52 @@ public:
   return lists;
 }
     string pickName(vector<string> v){
-        int i = rand() % v.size(); 
+        int i = (rand() % (v.size())); 
         string select = v[i];
         v.erase(v.begin() + i);
+        return select;
 
     }
-vector<string> getnames(string f);
-string pickName(vector<string> v);
 
 int main() {
     srand(time(0));
-    string costumer;
+    string custumer;
     DoublyLinkedList line;
     cout << "Store opends: \n";
     vector<string> names = getnames("names.txt");
    
     for (int i = 0; i < MIN_LS; i++) {
         
-        costumer = pickName(names);
-        line.push_back(costumer);
-        cout << costumer << " joined the line.\n";
+        custumer = pickName(names);
+        line.push_back(custumer);
+        cout << custumer << " joined the line.\n";
     }
     cout <<"Resulting line: \n";
     line.print();
 
     int help, join, endlea, leave, vip;
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < MAX_LS -1; i++) {
         cout << "\nTime step #" << i + 2 << endl;
         help = rand() % 100 + 1;
         if (help <= 40) {
-            costumer = line.pop_front();
-            cout << "\n\t" << costumer << " is served";
+            custumer = line.pop_front();
+            cout << "\n\t" << custumer << " is served";
         }
         join = rand() % 100 + 1;
         if (join <= 60) {
-            costumer = getnames(names);
-            line.push_back(costumer);
+            custumer = pickName(names);
+            line.push_back(custumer);
             vip = rand() % 100 + 1;
             if (vip <= 10) {
-                line.push_front(costumer);
-                cout << "\n\t" << costumer << " (VIP) joins the front of the line";
+                line.push_front(custumer);
+                cout << "\n\t" << custumer << " (VIP) joins the front of the line";
             } else
-                cout << "\n\t" << costumer << " joins the line";
+                cout << "\n\t" << custumer << " joins the line";
         }
-        leave = rand() % 100 + 1;
+        endlea = rand() % 100 + 1;
         if (endlea <= 20) {
-            costumer = line.pop_back();
-            cout << "\n\t" << costumer << " (at the rear) left the line";
+            custumer = line.pop_back();
+            cout << "\n\t" << custumer << " (at the rear) left the line";
         }
         for (int i = 0; i < line.getSize(); i++) {
             leave = rand() % 100 + 1;
