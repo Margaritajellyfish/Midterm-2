@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <ctime>
+
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -225,6 +227,7 @@ vector<string> getnames(string f);
 string pickName(vector<string> v);
 
 int main() {
+    srand(time(0));
     string costumer;
     DoublyLinkedList line;
     cout << "Store opends: \n";
@@ -239,6 +242,27 @@ int main() {
     cout <<"Resulting line: \n";
     line.print();
 
+    int help, join, endlea, leave, vip;
+    for (int i = 0; i < 19; i++) {
+        cout << "\nTime step #" << i + 2 << endl;
+        help = rand() % 100 + 1;
+        if (help <= 40) {
+            name = line.pop_front();
+            cout << "\n\t" << name << " is served";
+        }
+        join = rand() % 100 + 1;
+        if (join <= 60) {
+            name = selectRandomName(names);
+            line.push_back(name);
+            vip = rand() % 100 + 1;
+            if (vip <= 10) {
+                line.push_front(name);
+                cout << "\n\t" << name << " (VIP) joins the front of the line";
+            } else
+                cout << "\n\t" << name << " joins the line";
+        }
+        
+  }
     
     return 0;
 }
