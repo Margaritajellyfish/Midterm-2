@@ -195,10 +195,11 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->data << " \n";
             current = current->next;
+            cout << endl;
         }
-        cout << endl;
+        
     }
 
     void print_reverse() {
