@@ -209,18 +209,33 @@ public:
         if(!fin.good()){
             cout <<"Can't open file";
         }
-        while (fin >> lists) {
+        while (fin >> name) {
          lists.push_back(name);
   }
   return lists;
 }
+    string pickName(vector<string> v){
+        int i = rand() % v.size(); 
+        string select = v[i];
+        v.erase(v.begin() + i);
+
+    }
 };
+vector<string> getnames(string f);
+string pickName(vector<string> v);
 
 int main() {
-   DoublyLinkedList line;
-   cout << "Store opends: \n";
-   vector<string> names = getnames("names.txt");
-
+    string costumer;
+    DoublyLinkedList line;
+    cout << "Store opends: \n";
+    vector<string> names = getnames("names.txt");
+   
+    for (int i = 0; i < MIN_LS; i++) {
+        
+        costumer = pickName(names);
+        line.push_back(costumer);
+        cout << costumer << " joined the line.\n";
+  }
 
     
     return 0;
