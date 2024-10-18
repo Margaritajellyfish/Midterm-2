@@ -247,20 +247,32 @@ int main() {
         cout << "\nTime step #" << i + 2 << endl;
         help = rand() % 100 + 1;
         if (help <= 40) {
-            name = line.pop_front();
-            cout << "\n\t" << name << " is served";
+            costumer = line.pop_front();
+            cout << "\n\t" << costumer << " is served";
         }
         join = rand() % 100 + 1;
         if (join <= 60) {
-            name = selectRandomName(names);
-            line.push_back(name);
+            costumer = getnames(names);
+            line.push_back(costumer);
             vip = rand() % 100 + 1;
             if (vip <= 10) {
-                line.push_front(name);
-                cout << "\n\t" << name << " (VIP) joins the front of the line";
+                line.push_front(costumer);
+                cout << "\n\t" << costumer << " (VIP) joins the front of the line";
             } else
-                cout << "\n\t" << name << " joins the line";
+                cout << "\n\t" << costumer << " joins the line";
         }
+        leave = rand() % 100 + 1;
+        if (endlea <= 20) {
+            costumer = line.pop_back();
+            cout << "\n\t" << costumer << " (at the rear) left the line";
+        }
+        for (int i = 0; i < line.getSize(); i++) {
+            leave = rand() % 100 + 1;
+            if (leave <= 10) {
+                cout << "\n\t" << line.delete_pos(i) << " left the line";
+            }
+        }
+    line.print();
         
   }
     
