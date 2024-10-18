@@ -265,7 +265,7 @@ int main() {
         help = rand() % 100 + 1;
         if (help <= 40) {
             custumer = line.pop_front();
-            cout << "\n\t" << custumer << " is served";
+            cout << "\n\t" << custumer << " is served\n";
         }
         join = rand() % 100 + 1;
         if (join <= 60) {
@@ -274,19 +274,19 @@ int main() {
             vip = rand() % 100 + 1;
             if (vip <= 10) {
                 line.push_front(custumer);
-                cout << "\n\t" << custumer << " (VIP) joins the front of the line";
+                cout << "\n\t" << custumer << " (VIP) joins the front of the line\n";
             } else
-                cout << "\n\t" << custumer << " joins the line";
+                cout << "\n\t" << custumer << " joins the line\n";
         }
         endlea = rand() % 100 + 1;
         if (endlea <= 20) {
             custumer = line.pop_back();
-            cout << "\n\t" << custumer << " (at the rear) left the line";
+            cout << "\n\t" << custumer << " (at the rear) left the line\n";
         }
         for (int i = 0; i < line.getSize(); i++) {
             leave = rand() % 100 + 1;
             if (leave <= 10) {
-                cout << "\n\t" << line.delete_pos(i) << " left the line";
+                cout << "\n\t" << line.delete_pos(i) << " left the line\n";
             }
         }
     line.print();
